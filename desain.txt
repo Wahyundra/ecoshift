@@ -1,0 +1,108 @@
+Tentu, ini adalah skrip desain lengkap (tanpa kode implementasi) untuk Web Aplikasi **Eco-Shift**. Desain ini memenuhi semua kebutuhan spesifik Anda, termasuk daftar 6 kelas PPLG, fitur tukar jadwal, notifikasi, dan pelaporan kerusakan sarana, dengan tata letak yang profesional dan responsif.
+
+---
+
+## 1. Filosofi Desain & Struktur Umum
+
+* **Nama Aplikasi:** Eco-Shift (Shift Ekologi)
+* **Pengguna:** Siswa PPLG (X PPLG 1, X PPLG 2, XI RPL, XI PG, XII RPL, XII PG) dan Admin (Guru/Staf).
+* **Tata Letak:** Menggunakan **Top Navbar** (Header) dan **Sidebar Navigasi Kiri** yang responsif.
+* **Estetika:** Bersih, modern, dan menggunakan kombinasi warna **Hijau (Lingkungan)** dan **Biru (Teknologi/Struktur)**.
+
+---
+
+## 2. Struktur Navigasi (Top Navbar & Sidebar)
+
+### A. Top Navbar (Selalu Terlihat)
+
+| Elemen | Lokasi | Fungsi |
+| :--- | :--- | :--- |
+| **Logo & Nama** | Kiri Atas | Identitas aplikasi: Eco-Shift. | 
+| **Search Bar** | Tengah Atas | Memungkinkan pencarian cepat nama siswa, laporan, atau pengumuman. |
+| **User Dropdown** | Kanan Atas | Menampilkan **Nama Pengguna**, Ikon Notifikasi (Lonceng), dan Tombol **Keluar (Logout)**. |
+
+### B. Sidebar Navigasi Siswa
+
+Sidebar ini aktif setelah Siswa *login*.
+
+| Menu | Ikon | Tujuan | Fungsi |
+| :--- | :--- | :--- | :--- |
+| **Dashboard** | 🏠 | Halaman Beranda | Ringkasan Tugas Harian. |
+| **Jadwal Piket** | 🗓️ | Halaman Kalender | Melihat jadwal 6 kelas PPLG. |
+| **Laporan & Tukar** | 📝 | Halaman Formulir | Mengajukan tukar jadwal dan melaporkan kerusakan. |
+
+### C. Sidebar Navigasi Admin
+
+Sidebar ini aktif setelah Admin *login*.
+
+| Menu | Ikon | Tujuan | Fungsi |
+| :--- | :--- | :--- | :--- |
+| **Dashboard** | 📊 | Halaman Statistik | Monitoring dan Tugas Mendesak. |
+| **Manajemen Jadwal**| ⚙️ | Halaman Rotasi | Kelola jadwal rotasi dan permintaan tukar. |
+| **Tinjauan Laporan**| 🔍 | Halaman Laporan | Menanggapi laporan kerusakan siswa. |
+| **Kelola Info** | 📢 | Halaman Posting | Membuat dan memposting pengumuman hari ini. |
+
+---
+
+## 3. Tampilan Pengguna: Siswa
+
+### A. Dashboard Siswa (Beranda)
+
+* **Kartu Tugas Hari Ini (Paling Atas):**
+    * **Penting:** Kartu besar yang menggunakan warna **Kuning Mencolok** jika siswa bertugas, atau Hijau Muda jika bebas tugas.
+    * **Isi:** Status Tugas, **Waktu Piket (Contoh: 15.30 - 16.00 WIB)**, Lokasi (Contoh: Area Kantin dan Gedung PPLG).
+    * **Notifikasi *Timing*:** Sisipan teks: "Anda akan menerima **Pemberitahuan Pop-up Web** 30 menit sebelum jam piket."
+    * **Aksi:** Tombol **"Verifikasi Selesai (Unggah Foto)"** yang hanya aktif pada jam piket.
+* **Panel Riwayat & Laporan:**
+    * **Tabel Riwayat Laporan Kerusakan Saya:** Menampilkan 3 laporan terbaru siswa, beserta statusnya (Baru, Diproses, Selesai).
+* **Panel Pengumuman:** Daftar pengumuman terbaru dari Admin.
+
+### B. Halaman Jadwal Piket
+
+* **Filter Kelas:** Di bagian atas halaman, wajib ada **Chip Filter** yang menunjukkan keenam kelas: **X PPLG 1, X PPLG 2, XI RPL, XI PG, XII RPL, XII PG**.
+* **Tampilan Kalender:** Menampilkan jadwal piket **bulanan** dari kelas yang dipilih. Mengklik tanggal akan memunculkan *pop-up* yang berisi daftar nama siswa yang bertugas pada hari itu.
+
+### C. Halaman Laporan & Tukar
+
+* **Tab "Ajukan Tukar Jadwal":**
+    * **Formulir:** Input **Tanggal Piket Awal**, **Alasan Kepentingan**, **Dropdown Nama Teman Pengganti** (dari daftar 6 kelas PPLG).
+    * **Alur Persetujuan:** Setelah siswa A mengajukan dan siswa B menyetujui di aplikasinya, permintaan tersebut baru dikirim ke Admin.
+    * **Riwayat:** Tabel untuk melacak status permintaan (Menunggu Teman, Menunggu Admin, Disetujui/Ditolak).
+* **Tab "Lapor Kerusakan Sarana":**
+    * **Formulir:** Input **Jenis Kerusakan** (Dropdown: Wastafel, Toilet, Keran, dll.), **Lokasi Detail** (Input Teks), **Unggah Foto Bukti** (Wajib).
+
+---
+
+## 4. Tampilan Pengguna: Admin
+
+### A. Dashboard Admin
+
+* **Panel Statistik:** Kartu ringkasan dengan metrik utama:
+    * Jumlah Laporan Kerusakan **Baru**.
+    * Jumlah Permintaan Tukar Piket **Menunggu Persetujuan**.
+    * Tingkat **Kepatuhan Piket** Seluruh PPLG (Persentase Verifikasi Foto).
+* **Tabel Tugas Mendesak:** Dua tabel *preview* (1. Permintaan Tukar Baru, 2. Laporan Kerusakan Baru) yang langsung menyediakan tombol **"Tinjau"** atau **"Proses"**.
+
+### B. Manajemen Jadwal & Tukar Piket
+
+* **Manajemen Tukar Piket:**
+    * Tabel menampilkan permintaan tukar yang **sudah disetujui teman** dan menunggu persetujuan Admin.
+    * Admin dapat mengklik untuk melihat detail alasan, dan memilih **"Setujui"** atau **"Tolak"**.
+* **Editor Jadwal:** Antarmuka kalender atau tabel yang memungkinkan Admin:
+    * Membuat jadwal rotasi otomatis untuk kelas-kelas baru.
+    * Mengedit jadwal siswa secara manual (misalnya, jika siswa pindah kelas).
+    * **Verifikasi Harian:** Meninjau foto bukti piket yang diunggah siswa dan memberikan status *Verified*.
+
+### C. Tinjauan Laporan Sarana
+
+* **Filter Laporan:** **Filter Status** (Baru, Diproses, Selesai) dan **Filter Kelas Pelapor** (X PPLG 1, XI RPL, dst.).
+* **Tabel Laporan:** Daftar semua laporan.
+* **Tindakan Admin:** Di setiap laporan, Admin dapat:
+    * Melihat **Foto Bukti** dan detail lokasi.
+    * Mengubah status menjadi **"Diproses"** (mengirim notifikasi ke pelapor).
+    * Mengubah status menjadi **"Selesai"** setelah perbaikan (mengirim notifikasi penyelesaian ke pelapor).
+
+### D. Kelola Informasi (Pengumuman)
+
+* **Form Editor:** Formulir sederhana untuk memasukkan **Judul** dan **Isi Pengumuman**.
+* **Daftar Pengumuman Aktif:** Daftar pengumuman yang sedang tayang di Dashboard Siswa, dengan opsi untuk **Edit** atau **Arsipkan**.

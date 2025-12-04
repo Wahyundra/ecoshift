@@ -1,0 +1,844 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f7f6;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll; /* Prevent layout shift from scrollbar appearing/disappearing */
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#loading-screen .logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login-container {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group.input-group-static {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group.input-group-static p {
+    font-weight: 600; /* Semibold */
+    margin: 0;
+}
+
+.input-group input, .input-group select, .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2ecc71; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #27ae60;
+}
+
+.error {
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+/* Navbar for Student */
+.navbar {
+    background-color: #ffffff; /* White background */
+    padding: 10px 20px; /* Adjusted padding */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add shadow */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.navbar .logo-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    gap: 10px;
+}
+
+.navbar .logo {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+}
+
+.navbar h2 {
+    color: rgb(75, 224, 142); 
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Change font */
+    font-size: 24px;
+    line-height: 50px; /* Match logo height */
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto; /* Move links to the right */
+}
+
+.navbar ul li a {
+    color: #333333; /* Dark text color */
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.navbar ul li a:hover {
+    background-color: #f1f1f1;
+}
+
+.navbar ul li a.active-link {
+    color: #27ae60;
+}
+
+.navbar ul li a.active-link::after {
+    content: '';
+    position: absolute;
+    bottom: 8px; /* Adjust vertical position of the line */
+    left: 15px;
+    right: 15px;
+    height: 3px;
+    background-color: #27ae60;
+}
+
+.hamburger-menu {
+    display: none; /* Hidden by default on large screens */
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+}
+
+.nav-links {
+    display: flex; /* Default for large screens */
+    align-items: center;
+    margin-left: auto;
+}
+
+.nav-links ul {
+    display: flex; /* Default for large screens */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links .user-info {
+    margin-left: 20px; /* Keep spacing for admin logout */
+}
+
+/* Navbar for Admin */
+.admin-navbar {
+    background-color: #ffffff; /* White background for admin */
+}
+
+.admin-navbar .user-info {
+    margin-left: 20px;
+}
+
+.admin-navbar .user-info a {
+    color: #333333; /* Dark logout link white */
+}
+
+/* General Layout */
+.main-container {
+    display: flex;
+    flex: 1; /* Allow main content to grow */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #34495e; /* Blue */
+    color: white;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #2c3e50;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px 60px; /* Increased horizontal padding */
+}
+
+.dashboard-content {
+    position: relative;
+}
+
+.header {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .user-info a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* Card Layout */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#live-clock {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.day-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.day-card h4 {
+    margin-top: 0;
+}
+
+.datetime-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+/* Footer */
+.main-footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+.main-footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-footer .footer-section {
+    flex: 1;
+    min-width: 250px; /* Minimum width for each section */
+    margin: 10px;
+    text-align: left;
+}
+
+.main-footer .footer-section.contact-section {
+    text-align: right;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: #2ecc71;
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+.footer-separator {
+    border: 0;
+    height: 1px;
+    background-color: #555;
+    margin: 10px auto;
+    width: 80%; /* Adjust width as needed */
+}
+
+/* Class Filters */
+.class-filters {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.class-button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.class-button:hover, .class-button.active {
+    background-color: #41c4bd;
+    color: white;
+}
+
+.schedule-display h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.schedule-display h5 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.schedule-display ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.schedule-display ul li {
+    background-color: #f0f0f0;
+    margin-bottom: 5px;
+    padding: 8px;
+    border-radius: 3px;
+}
+
+/* Admin Schedule Management */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+.message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.action-buttons button {
+    display: inline-block;
+    width: auto;
+    margin-right: 5px;
+}
+
+.action-buttons a:hover {
+    text-decoration: underline;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    color: black;
+}
+
+.tab-button:hover {
+    background-color: #ddd;
+}
+
+.tab-button.active {
+    background-color: #ccc;
+    border-bottom: 1px solid #fff;
+}
+
+.tab-content {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+/* New Dashboard Styles */
+.hero-section {
+    min-height: calc(100vh - 70px); /* Adjust 70px based on actual navbar height */
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px; /* Add some padding at the bottom */
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.welcome-left {
+    flex: 1;
+    margin-bottom: 95px;
+}
+
+.welcome-right {
+    flex-shrink: 0;
+    margin-bottom: 95px;
+}
+
+.welcome-logo {
+    width: 400px; /* Increased size */
+    height: auto; /* Adjust height automatically */
+    border-radius: 8px; /* Optional: add a slight border radius for aesthetics */
+}
+
+.welcome-left h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.welcome-left p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-welcome {
+    background-color: #60d394; /* Softer green */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 25px; /* Rounded shape */
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-welcome:hover {
+    background-color: #50b880; /* Slightly darker green */
+}
+
+.weekly-schedule-header {
+    margin-top: 40px;
+}
+
+.weekly-schedule-header h3 {
+    font-size: 28px;
+}
+
+.weekly-schedule-header .current-day {
+    font-size: 48px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-top: 10px;
+}
+
+.today-schedule {
+    margin-top: 20px;
+}
+
+.today-schedule h4 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.today-schedule ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.today-schedule ul li {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.schedule-image-section {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.schedule-image-left {
+    flex: 1;
+}
+
+.schedule-image-left img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: block; /* To allow margin auto for centering */
+    margin: 0 auto; /* Center the image */
+}
+
+.schedule-image-right {
+    flex: 1;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    /* General */
+    body {
+        font-size: 14px;
+    }
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column; /* Stack logo-container and nav-links vertically */
+        padding: 10px;
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .navbar .logo-container {
+        display: flex; /* Ensure logo, text, and hamburger are aligned */
+        align-items: center;
+        justify-content: space-between; /* Distribute space between logo/text and hamburger */
+        width: 100%; /* Take full width */
+        margin-bottom: 10px; /* Add some space below logo-container */
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger on small screens */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none; /* Hidden by default on small screens */
+        margin-left: 0; /* Reset margin */
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-links ul li a {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-links ul li:last-child a {
+        border-bottom: none;
+    }
+
+    .nav-links .user-info {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    /* Main Layout */
+    .main-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none; /* Hide sidebar on small screens */
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    /* Login Page */
+    .login-container form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    /* Dashboard Student */
+    .hero-section {
+        min-height: auto;
+        padding-bottom: 20px;
+    }
+
+    .welcome-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .welcome-right {
+        display: none; /* Hide image on small screens */
+    }
+
+    .welcome-left, .welcome-right {
+        margin-bottom: 0;
+    }
+
+    .welcome-logo {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .welcome-left h2 {
+        font-size: 28px;
+    }
+
+    .welcome-left p {
+        font-size: 16px;
+    }
+
+    .welcome-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .schedule-image-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .schedule-image-left img {
+        max-width: 100%;
+        display: none;
+    }
+
+    /* Tables */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Footer */
+    .main-footer .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-footer .footer-section {
+        min-width: unset;
+        text-align: center;
+    }
+
+    .main-footer .footer-section.contact-section {
+        text-align: center;
+    }
+}
+img { max-width: 100%; height: auto; }
+
+/* Highlight for the current user's schedule */
+.current-user-schedule {
+    font-weight: bold;
+    color: black;
+    background-color: #90ee90; /* lightgreen */
+    padding: 12px 8px; /* Increased vertical padding */
+}
+
+/* Scroll to top button */
+#scrollTopBtn {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+}
+
+#scrollTopBtn:hover {
+  background-color: #34495e;
+}
+
+/* Collapsible List Styles */
+.collapsible-list {
+  max-height: 400px; /* Height when collapsed */
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.collapsible-list.expanded {
+
+  max-height: 5000px; /* A large enough value to show all content */
+
+}
+
+
+
+/* Styles for the student dashboard collapsible list */
+
+.today-schedule .collapsible-list {
+
+  max-height: 120px; /* Approx. 3-4 items */
+
+  overflow: hidden;
+
+  transition: max-height 0.5s ease-out;
+
+}
+
+
+
+.today-schedule .collapsible-list.expanded {
+
+  max-height: 1500px; /* Adjust if needed */
+
+}
+
+
+
+.toggle-button {
+
+    background: none;
+
+    border: none;
+
+    color: #27ae60;
+
+    cursor: pointer;
+
+    padding: 5px 0;
+
+    text-decoration: underline;
+
+    font-weight: bold;
+
+    width: auto; /* Override default button width */
+
+}
