@@ -32,7 +32,7 @@ $welcome_message = $is_piket_day ? "Hari ini adalah jadwal membuang sampah anda,
                 <h2><strong><?php echo $welcome_message; ?></strong></h2>
                 
                 <div class="welcome-buttons">
-                    <a href="schedule.php" class="btn-welcome">Lihat Jadwal Saya</a>
+                    <a href="schedule.php" class="btn-welcome">Lihat Jadwal </a>
                     <a href="reports.php" class="btn-welcome">Lapor Sampah Menumpuk</a>
                 </div>
             </div>

@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="navbar">
         <div class="logo-container">
             <img src="assets/img/jameco.png" alt="Jameco Logo" class="logo">
-            <h2><a href="dashboard_student.php" style="text-decoration: none; color: inherit;">EcoShift</a></h2>
+            <h2><a href="dashboard_student.php" style="text-decoration: none; color: inherit;">WahyuShift</a></h2>
             <button class="hamburger-menu" aria-label="Toggle navigation">&#9776;</button>
         </div>
         <div class="nav-links">
